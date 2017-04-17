@@ -77,7 +77,7 @@ Player.propTypes = {
 
 // Application component - this will be comprised of our smaller components that we've already composed.  It is much more organized to have smaller high level components within the application rather than one large beefy component with so much going on within it.  Because we have decomposed the application into smaller components, we can edit those individually later on down the road and it will be much easier to read.
 function Application(props) {
-	// We will use instances of our Header component, and Player component.  We will iterate over our array of players using the map() method, which takes a function.  The argument for our function is what we use to draw the data from each index of our array.  This is how we can loop over our data model PLAYERS.  We return it as an instance of our Player component and map each key/value pair for each one.
+	// We will use instances of our Header component, and Player component.  We will iterate over our array of players using the map() method, which takes a function.  The argument for our function is what we use to draw the data from each index of our array.  This is how we can loop over our data model PLAYERS.  We return it as an instance of our Player component and map each key/value pair for each one.  The 'key' property is required so the loop knows where it is within the array.
 	return (
 		<div className="scoreboard">
 			<Header title={props.title} />
