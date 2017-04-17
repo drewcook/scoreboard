@@ -45,7 +45,7 @@ Player.propTypes = {
 	score: React.PropTypes.number.isRequired,
 }
 
-// Application component
+// Application component - this will be comprised of our smaller components that we've already composed.  It is much more organized to have smaller high level components within the application rather than one large beefy component with so much going on within it.  Because we have decomposed the application into smaller components, we can edit those individually later on down the road and it will be much easier to read.
 function Application(props) {
 	return (
 		<div className="scoreboard">
