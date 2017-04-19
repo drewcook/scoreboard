@@ -41,20 +41,21 @@ Header.propTypes = {
 	title: React.PropTypes.string.isRequired,
 };
 
-// Counter component - decompose the player component even further to include the counter component
-function Counter(props) {
-	return (
-		<div className="counter">
-			<button className="counter-action decrement"> - </button>
-			<div className="counter-score">{props.score}</div>
-			<button className="counter-action increment"> + </button>
-		</div>
-	);
-}
-// Counter property types
-Counter.propTypes = {
-	score: React.PropTypes.number.isRequired,
-}
+// Create a new 'component class' - creating a new class allows us to use different 'states' of a component, instead of stateless functional components.  A component class contains an object. We can specity what we want to render as well as defined property types through keys/properties of our class.
+var Counter = React.createClass({
+	propTypes: {
+		score: React.PropTypes.number.isRequired,
+	},
+	render: function() {
+		return (
+			<div className="counter">
+				<button className="counter-action decrement"> - </button>
+				<div className="counter-score">{this.props.score}</div>
+				<button className="counter-action increment"> + </button>
+			</div>
+		);
+	}
+});
 
 // Player component - so we can reuse it multiple times and make our application much more easy to read.  It is essential to break down our main application component into multiple smaller components so we are more organized and things are easier to edit.
 function Player(props) {
