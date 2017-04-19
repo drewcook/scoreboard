@@ -43,9 +43,7 @@ Header.propTypes = {
 
 // Create a new 'Component Class' - creating a new class allows us to use different 'states' of a component, instead of Stateless Functional Components.  A component class contains an object. We can specity what we want to render as well as defined property types through keys/properties of our class.
 var Counter = React.createClass({
-	propTypes: {
-		score: React.PropTypes.number.isRequired,
-	},
+	propTypes: {},
 
 	// Create a method for getting the initial state of our counter, this built in method for component classes will set our initial state of our class to whatever we have it return.  Lets set our counter's initial state to 0.
 	getInitialState: function() {
@@ -73,7 +71,7 @@ function Player(props) {
 				{props.name}
 			</div>
 			<div className="player-score">
-				<Counter score={props.score} />
+				<Counter />
 			</div>
 		</div>
 	);
