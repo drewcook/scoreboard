@@ -43,21 +43,36 @@ Header.propTypes = {
 
 // Create a new 'Component Class' - creating a new class allows us to use different 'states' of a component, instead of Stateless Functional Components.  A component class contains an object. We can specity what we want to render as well as defined property types through keys/properties of our class.
 var Counter = React.createClass({
-	propTypes: {},
+	propTypes: {
+		initialScore: React.PropTypes.number.isRequired,
+	},
 
 	// Create a method for getting the initial state of our counter, this built in method for component classes will set our initial state of our class to whatever we have it return.  Lets set our counter's initial state to 0.
 	getInitialState: function() {
 		return {
-			score: 0,
+			score: this.props.initialScore,
 		}
 	},
 
+	// Now lets create some methods to increase/decrease our counter for keeping score.  The setState() method contains an object literal.  What it does is it rerenders every time it is called.  So rather than saying this.state.score += 1, we use setState(), otherwise, the score may update but React doesnt know to rerender itself after it happens.
+	incrementScore: function() {
+		this.setState({
+			score: (this.state.score + 1),
+		})
+	},
+	decrementScore: function() {
+		this.setState({
+			score: (this.state.score - 1),
+		})
+	},
+
 	render: function() {
+		// We call the methods without (), because the way 'this' works in React.  React automatically binds methods to its current instance of the Class.
 		return (
 			<div className="counter">
-				<button className="counter-action decrement"> - </button>
+				<button className="counter-action decrement" onClick={this.decrementScore}> - </button>
 				<div className="counter-score">{this.state.score}</div>
-				<button className="counter-action increment"> + </button>
+				<button className="counter-action increment" onClick={this.incrementScore}> + </button>
 			</div>
 		);
 	}
@@ -71,7 +86,7 @@ function Player(props) {
 				{props.name}
 			</div>
 			<div className="player-score">
-				<Counter />
+				<Counter initialScore={props.score} />
 			</div>
 		</div>
 	);
